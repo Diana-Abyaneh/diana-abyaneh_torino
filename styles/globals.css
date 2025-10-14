@@ -1,13 +1,15 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: "Yekan Bakh";
+  src: url("/fonts/YekanBakh-Light.woff2") format("woff2"),
+    url("/fonts/YekanBakh-Light.woff") format("woff"),
+    url("/fonts/YekanBakh-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --font-primary: "Yekan Bakh", Tahoma, sans-serif;
 }
 
 html,
@@ -17,26 +19,54 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-primary);
+  font-weight: 400;
 }
 
 * {
+  font-family: "Yekan Bakh", Arial, Helvetica, sans-serif;
+  font-weight: 500;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 80px;
+}
+
+header div {
+  display: flex;
+  gap: 50px;
+  margin: auto;
+}
+
+header button {
+  display: flex;
+  gap: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  border: 2px solid rgba(40,167,69,1);
+  border-radius: 8px;
+  color: rgba(40,167,69,1);
+  background-color: white;
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+header button span {
+  padding-top: 10px;
+}
+
+header button p {
+  margin: auto;
+}
+
+
+
 a {
   color: inherit;
   text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }
