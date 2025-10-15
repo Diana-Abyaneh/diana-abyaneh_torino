@@ -1,5 +1,39 @@
 .container {
-    display: flex;
+  display: flex;
+  gap: 10px;
+  margin: 25px auto;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  padding: 10px;
+  width: max-content;
+}
 
-    gap: 10px;
+.container label {
+  font-size: 20px;
+  margin: auto;
+  padding-top: 8px;
+}
+
+.container input {
+  border: none;
+  border-left: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+.date {
+  border-left: none !important;
+}
+
+.date::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.container button {
+  background-color: rgba(40, 167, 69, 1);
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  border: none;
+  border-radius: 16px;
+  padding: 8px 30px;
+  cursor: pointer;
 }

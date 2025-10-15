@@ -21,6 +21,7 @@ body {
 body {
   font-family: var(--font-primary);
   font-weight: 400;
+  padding: 0 80px;
 }
 
 * {
@@ -34,7 +35,7 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  padding: 10px 80px;
+  padding: 10px 0;
 }
 
 header div {
@@ -48,9 +49,9 @@ header button {
   gap: 5px;
   font-weight: 600;
   font-size: 18px;
-  border: 2px solid rgba(40,167,69,1);
+  border: 2px solid rgba(40, 167, 69, 1);
   border-radius: 8px;
-  color: rgba(40,167,69,1);
+  color: rgba(40, 167, 69, 1);
   background-color: white;
   padding: 0 15px;
   cursor: pointer;
@@ -64,7 +65,40 @@ header button p {
   margin: auto;
 }
 
+.footerContainer {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
 
+.footerContainer h2 {
+  font-weight: 700;
+  padding-bottom: 8px;
+}
+
+.certificates {
+  width: 900px;
+  text-align: left;
+}
+
+.certificates p {
+  font-size: 18px;
+  font-weight: 500;
+  padding-bottom: 20px;
+}
+
+.images img{
+  margin-right: 15px;
+}
+
+.rights {
+  font-weight: 500;
+  font-size: 18px;
+  padding: 5px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
 
 a {
   color: inherit;
