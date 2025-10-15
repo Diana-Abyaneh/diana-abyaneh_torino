@@ -39,12 +39,16 @@ const SearchForm = ({ onSearch }) => {
             placeholder="مقصد"
           />
 
+          <label htmlFor="date">
+            <LuCalendarRange/>
+          </label>
+
           <input
             id="date"
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className=""
+            className={styles.date}
             placeholder="تاریخ"
           />
 
