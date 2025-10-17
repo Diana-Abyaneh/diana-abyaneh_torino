@@ -1,0 +1,61 @@
+
+
+.container ul {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.container ul li {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container ul li:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.container ul li:hover h3 {
+  color: rgba(0, 158, 202, 1);
+  font-weight: 600;
+}
+
+.details {
+  padding: 10px;
+}
+
+.options {
+  display: flex;
+}
+
+.reserve {
+  margin-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  display: flex;
+  justify-content: space-between;
+}
+
+.reserve button {
+  background-color: rgba(40, 167, 69, 1);
+  color: white;
+  height: fit-content;
+  margin-top: 10px;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.reserve p {
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.reserve p span {
+  font-size: 20px;
+  color: rgba(0, 158, 202, 1);
+}

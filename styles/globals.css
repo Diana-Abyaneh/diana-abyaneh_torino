@@ -21,7 +21,7 @@ body {
 body {
   font-family: var(--font-primary);
   font-weight: 400;
-  padding: 0 80px;
+  padding: 0 163px;
 }
 
 * {
@@ -103,4 +103,12 @@ header button p {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
 }

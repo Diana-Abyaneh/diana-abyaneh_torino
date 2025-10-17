@@ -1,3 +1,9 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
 .imgContainer {
   margin: 0 -80px;
   width: 100vw;
@@ -8,15 +14,130 @@
   margin-right: -50vw;
 }
 
-
-.container h2,
-.container span {
+.form h2,
+.form span {
   color: rgba(89, 89, 89, 1);
   text-align: center;
   font-weight: 700;
   font-size: 28px;
 }
 
-.container h2 span {
+.form h2 span {
   color: rgba(40, 167, 69, 1);
+}
+
+.advertise {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.texts {
+  display: flex;
+  gap: 200px;
+  background-color: rgba(40, 167, 69, 1);
+  border-radius: 10px;
+}
+
+.texts div {
+  padding: 20px;
+}
+
+.texts div h2 {
+  color: white;
+  font-weight: 800;
+  font-size: 48px;
+}
+
+.texts div h2 span {
+  color: rgba(16, 65, 27, 1);
+  font-weight: 800;
+  font-size: 48px;
+}
+
+.texts div h4 {
+  color: white;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.info {
+  text-align: center;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.call {
+  display: flex;
+  margin: auto;
+  gap: 10px;
+}
+
+.call h3 {
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.call span {
+  width: 15px;
+  margin: auto;
+}
+
+.info button {
+  background-color: rgba(16, 65, 27, 1);
+  color: white;
+  border: none;
+  border-radius: 9px;
+  padding: 10px 30px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.whyUs {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.whyUs div {
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+}
+
+.question {
+  background: linear-gradient(rgba(40, 167, 69, 1), rgba(16, 65, 27, 1));
+  color: white;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: inline-block;
+  text-align: center;
+  font-weight: 800;
+  margin-left: 10px;
+}
+
+.whyUs div h1 {
+  font-weight: 800;
+  font-size: 45px;
+}
+
+.torino {
+  color: rgba(40, 167, 69, 1);
+  font-weight: 800;
+}
+
+.whyUs div h2 {
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 50px;
+}
+
+.whyUs div p {
+  text-align: justify;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 50px;
 }
