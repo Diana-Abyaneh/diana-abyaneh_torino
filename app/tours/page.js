@@ -1,8 +1,12 @@
 "use client";
-
+import * as shamsi from "shamsi-date-converter";
 import { useQuery } from "@tanstack/react-query";
 import fetchTours from "@/hooks/fetchTours";
+import { vehicleType } from "@/hooks/vehicle";
+import { month } from "@/hooks/months";
+import { length } from "@/hooks/length";
 import Image from "next/image";
+import styles from "../../styles/tours.module.css";
 
 function Page() {
   const { data, error, isLoading } = useQuery({
@@ -17,20 +21,31 @@ function Page() {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1>همه تور ها</h1>
       <ul>
         {data && data.length > 0 ? (
           data.map((tour) => (
             <li key={tour.id}>
-              <div>
-                <Image src={tour.image} alt={tour.title} width={278} height={159} />
+              <Image
+                src={tour.image}
+                alt={tour.title}
+                width={278}
+                height={159}
+              />
+              <div className={styles.details}>
                 <h3>{tour.title}</h3>
-                <div></div>
-                <div>
+                <div className={styles.options}>
+                  <p>
+                    {month(shamsi.gregorianToJalali(tour.startDate)[1]) + "."}
+                  </p>
+                  <p>{length(tour.startDate, tour.endDate) + " روزه-"}</p>
+                  <p>{vehicleType(tour.fleetVehicle)}</p>
+                </div>
+                <div className={styles.reserve}>
                   <button>رزرو</button>
                   <p>
-                    <span>{tour.price}</span> تومان
+                    <span>{((tour.price)*100).toLocaleString()}</span> تومان
                   </p>
                 </div>
               </div>
