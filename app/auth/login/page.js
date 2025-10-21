@@ -1,11 +1,12 @@
 "use client";
+import axiosInstance from "@/lib/axios";
+import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { useRouter } from "next/navigation";
 import { PropagateLoader } from "react-spinners";
-import styles from "@/styles/login.module.css";
 import { useAuth } from "@/context/authContext";
+import styles from "@/styles/login.module.css";
 
 function Login() {
   const { setPhone, login, setIsLoading, isLoading } = useAuth();
@@ -28,14 +29,17 @@ function Login() {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
-    
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      setPhone(data.phone);
-      login(data.phone);
-      router.push("/auth/verify");
-      
+      const response = await axiosInstance.post("/auth/login", {
+        phone: data.phone,
+      });
+
+      if (response.status === 200) {
+        setPhone(data.phone);
+        login(data.phone);
+        router.push("/auth/verify");
+      }
     } catch (error) {
       console.error("خطا در ارسال فرم:", error);
     } finally {
@@ -61,8 +65,8 @@ function Login() {
           <p className={styles.errorText}>{errors.phone.message}</p>
         )}
 
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           disabled={isLoading}
           className={styles.submitButton}
         >
