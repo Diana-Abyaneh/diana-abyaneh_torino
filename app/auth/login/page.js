@@ -31,8 +31,8 @@ function Login() {
     setIsLoading(true);
 
     try {
-      const response = await axiosInstance.post("/auth/login", {
-        phone: data.phone,
+      const response = await axiosInstance.post("/auth/send-otp", {
+        mobile: data.phone,
       });
 
       if (response.status === 200) {
