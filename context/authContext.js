@@ -1,4 +1,5 @@
 "use client";
+
 import { createContext, useContext, useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
@@ -8,55 +9,49 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [phone, setPhone] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
-    const userCookie = Cookies.get("user");
-    if (userCookie) {
-      setUser(JSON.parse(userCookie));
-    }
-  }, []);
+  const token = Cookies.get("accessToken");
+  const userData = Cookies.get("user");
 
-  const login = (phoneNumber) => {
-    setPhone(phoneNumber);
-  };
+  if (token && userData) {
+    try {
+      const parsedUser = JSON.parse(userData);
+      setUser(parsedUser);
+    } catch (err) {
+      console.error("خطا در خواندن کوکی user:", err);
+    }
+  } else {
+    const savedPhone = Cookies.get("phone");
+    if (savedPhone) setPhone(savedPhone);
+  }
+}, []);
+
 
   const logout = () => {
-    setUser(null);
-    setPhone("");
-    Cookies.remove("user");
     Cookies.remove("accessToken");
     Cookies.remove("refreshToken");
-    setIsDropdownOpen(false);
+    Cookies.remove("user");
+    Cookies.remove("phone");
+    setUser(null);
+    setPhone("");
   };
 
-  const value = {
-    user,
-    setUser: (userData) => {
-      setUser(userData);
-      if (userData) {
-        Cookies.set("user", JSON.stringify(userData), { expires: 7 });
-      } else {
-        Cookies.remove("user");
-      }
-    },
-    phone,
-    setPhone,
-    isLoading,
-    setIsLoading,
-    login,
-    logout,
-    isDropdownOpen,
-    setIsDropdownOpen
-  };
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        setUser,
+        phone,
+        setPhone,
+        isLoading,
+        setIsLoading,
+        logout,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
+export const useAuth = () => useContext(AuthContext);
