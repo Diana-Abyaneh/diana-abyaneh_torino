@@ -1,32 +1,59 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { IoPerson } from "react-icons/io5";
+import { FaAngleDown } from "react-icons/fa6";
+import { LuLogOut } from "react-icons/lu";
+import { toast } from "react-toastify";
+import { useAuth } from "@/context/authContext";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import torino from "@/images/Torino.svg";
-import { useAuth } from "@/context/authContext";
+import styles from "@/styles/header.module.css";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Header() {
   const router = useRouter();
   const { user, logout, setUser } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [mobile, setMobile] = useState(null);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const token = Cookies.get("accessToken");
     const userData = Cookies.get("user");
 
-    if (token && userData) {
-      const parsedUser = JSON.parse(userData);
-      setUser(parsedUser);
-      setMobile(parsedUser.mobile);
+    if (token && !user && userData) {
+      try {
+        const parsed = JSON.parse(userData);
+        setUser(parsed);
+        console.log("Header restored user from cookie:", parsed);
+      } catch (err) {
+        console.error("خطا در خواندن کوکی user:", err);
+      }
     }
-  }, [setUser]);
+  }, []);
 
-  const handleLoginClick = () => {
-    if (mobile) {
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
+
+  const handleHomePage = () => {
+    if (window.location.pathname !== "/") {
+      router.push("/");
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const handleUserClick = () => {
+    if (user?.mobile) {
       setMenuOpen((prev) => !prev);
     } else {
       router.push("/auth/login");
@@ -34,48 +61,58 @@ export default function Header() {
   };
 
   const handleLogout = () => {
-    Cookies.remove("accessToken");
-    Cookies.remove("refreshToken");
-    Cookies.remove("user");
     logout();
-    setMobile(null);
-    router.push("/");
+    toast.success("با موفقیت خارج شدید", { position: "top-center" });
+    setTimeout(() => router.push("/"), 1500);
   };
 
   return (
-    <header className="flex justify-between items-center p-4 shadow-md bg-white relative">
-      <Image src={torino} alt="Torino logo" className="h-10 w-auto" />
+    <header className={styles.container}>
+      <div>
+        <Image
+          src={torino}
+          alt="Torino logo"
+          className={styles.logo}
+          onClick={handleHomePage}
+        />
+      </div>
 
-      <div className="flex gap-6 text-gray-700">
-        <p>صفحه اصلی</p>
+      <nav className={styles.nav}>
+        <p onClick={handleHomePage}>صفحه اصلی</p>
         <p>خدمات گردشگری</p>
         <p>درباره ما</p>
         <p>تماس با ما</p>
-      </div>
+      </nav>
 
-      <div className="relative">
+      <div ref={menuRef}>
         <button
-          onClick={handleLoginClick}
-          className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-xl shadow-md hover:bg-green-700 transition"
+          className={user?.mobile ? styles.logged : null}
+          onClick={handleUserClick}
         >
           <IoPerson size={20} />
-          <p>{mobile ? mobile : "ورود | ثبت‌نام"}</p>
+          <p>{user?.mobile || "ورود | ثبت‌نام"}</p>
+          {user && <FaAngleDown />}
         </button>
 
-        {menuOpen && mobile && (
-          <div className="absolute left-0 mt-2 w-40 bg-white border rounded-xl shadow-lg text-sm overflow-hidden">
-            <button
-              onClick={() => router.push("/profile")}
-              className="block w-full text-right px-4 py-2 hover:bg-gray-100"
-            >
-              پروفایل من
-            </button>
-            <button
+        {menuOpen && user && (
+          <div className={styles.menu}>
+            <div className={styles.number}>
+              <span>
+                <IoPerson />
+              </span>
+              <p>{user.mobile}</p>
+            </div>
+            <a href="/profile" className={styles.menuItem}>
+              <IoPerson />
+              <p>اطلاعات حساب کاربری</p>
+            </a>
+            <a
               onClick={handleLogout}
-              className="block w-full text-right px-4 py-2 text-red-600 hover:bg-gray-100"
+              className={styles.logout}
             >
-              خروج
-            </button>
+              <LuLogOut />
+              <p>خروج از حساب کاربری</p>
+            </a>
           </div>
         )}
       </div>
