@@ -1,15 +1,18 @@
 "use client";
-import axiosInstance from "@/lib/axios";
+
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import { PropagateLoader } from "react-spinners";
 import { useAuth } from "@/context/authContext";
+import Cookies from "js-cookie";
 import styles from "@/styles/login.module.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
-  const { setPhone, login, setIsLoading, isLoading } = useAuth();
+  const { setPhone, isLoading, setIsLoading } = useAuth();
   const router = useRouter();
 
   const schema = yup.object().shape({
@@ -23,25 +26,20 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = async (data) => {
     setIsLoading(true);
-
     try {
-      const response = await axiosInstance.post("/auth/send-otp", {
-        mobile: data.phone,
-      });
+      setPhone(data.phone);
+      Cookies.set("phone", data.phone, { expires: 0.1 });
 
-      if (response.status === 200) {
-        setPhone(data.phone);
-        login(data.phone);
-        router.push("/auth/verify");
-      }
+      router.push("/auth/verify");
     } catch (error) {
-      console.error("خطا در ارسال فرم:", error);
+      console.error("Login Error:", error);
+      toast.error("خطا در ورود. لطفاً دوباره تلاش کنید", {
+        position: "top-center",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -49,7 +47,6 @@ function Login() {
 
   return (
     <div className={styles.container}>
-      <p className={styles.coss}>x</p>
       <h1>ورود به تورینو</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -65,11 +62,7 @@ function Login() {
           <p className={styles.errorText}>{errors.phone.message}</p>
         )}
 
-        <button
-          type="submit"
-          disabled={isLoading}
-          className={styles.submitButton}
-        >
+        <button type="submit" disabled={isLoading} className={styles.submitButton}>
           {isLoading ? (
             <PropagateLoader
               color="rgba(40, 167, 69, 1)"
@@ -77,7 +70,7 @@ function Login() {
               speedMultiplier={0.8}
             />
           ) : (
-            "ارسال کد تایید"
+            "ارسال کد تأیید"
           )}
         </button>
       </form>
