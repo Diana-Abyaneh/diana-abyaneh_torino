@@ -48,7 +48,7 @@ function Tours() {
                     <button>جزئیات</button>
                   </Link>
                   <p>
-                    <span>{tour.price.toLocaleString()}</span> تومان
+                    <span>{tour.price.toLocaleString("fa")}</span> تومان
                   </p>
                 </div>
               </div>
