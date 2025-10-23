@@ -23,7 +23,8 @@
     "react18-input-otp": "^1.1.4",
     "shamsi-date-converter": "^1.0.5",
     "swiper": "^12.0.2",
-    "yup": "^1.7.1"
+    "yup": "^1.7.1",
+    "zaman": "^2.1.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
