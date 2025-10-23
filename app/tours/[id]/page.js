@@ -1,6 +1,5 @@
 "use client";
 
-import * as shamsi from "shamsi-date-converter";
 import Cookies from "js-cookie";
 import { useRouter, useParams } from "next/navigation";
 import { useQuery, useMutation } from "@tanstack/react-query";
@@ -31,11 +30,11 @@ export default function TourDetailsPage() {
     enabled: !!id,
   });
 
-  const basketMutation = useMutation({
+  const bookingMutation = useMutation({
     mutationFn: () => addToBasket(id),
     onSuccess: () => {
       toast.success("تور به سبد خرید اضافه شد", { position: "top-center" });
-      setTimeout(() => router.push("/basket"), 1500);
+      setTimeout(() => router.push("/basket"), 1000);
     },
     onError: (err) => {
       toast.error(err.message || "خطا در افزودن به سبد خرید", {
@@ -44,7 +43,7 @@ export default function TourDetailsPage() {
     },
   });
 
-  const handleBooking = async () => {
+  const handleBooking = () => {
     const token = Cookies.get("accessToken");
     if (!token) {
       toast.warning("لطفاً ابتدا وارد حساب کاربری شوید", {
@@ -54,13 +53,16 @@ export default function TourDetailsPage() {
       return;
     }
 
-    basketMutation.mutate();
+    bookingMutation.mutate();
   };
 
   if (isLoading)
     return <div className={styles.loading}>در حال بارگذاری...</div>;
   if (error)
     return <div className={styles.error}>خطا در دریافت اطلاعات تور</div>;
+
+  const start = new Date(tour.startDate).toLocaleDateString("fa-IR");
+  const end = new Date(tour.endDate).toLocaleDateString("fa-IR");
 
   return (
     <div className={styles.container}>
@@ -75,7 +77,9 @@ export default function TourDetailsPage() {
         </div>
         <div className={styles.info}>
           <h1>{tour.title}</h1>
-          <h3>{length(tour.startDate, tour.endDate)} روزه</h3>
+          <h3>
+            {length(tour.startDate, tour.endDate).toLocaleString("fa")} روزه
+          </h3>
 
           <div className={styles.options}>
             {tour.options?.map((option, idx) => (
@@ -85,10 +89,13 @@ export default function TourDetailsPage() {
 
           <div className={styles.reserve}>
             <p>
-              {tour.price.toLocaleString()} <span>تومان</span>
+              {tour.price.toLocaleString("fa")} <span>تومان</span>
             </p>
-            <button onClick={handleBooking} disabled={basketMutation.isPending}>
-              {basketMutation.isPending ? "در حال افزودن..." : "رزرو و خرید"}
+            <button
+              onClick={handleBooking}
+              disabled={bookingMutation.isPending}
+            >
+              {bookingMutation.isPending ? "در حال افزودن..." : "رزرو و خرید"}
             </button>
           </div>
         </div>
@@ -112,9 +119,7 @@ export default function TourDetailsPage() {
             </span>
             تاریخ رفت
           </p>
-          <p className={styles.details}>
-            {shamsi.gregorianToJalali(tour.startDate).join("/")}
-          </p>
+          <p className={styles.details}>{start}</p>
         </div>
 
         <div>
@@ -124,9 +129,7 @@ export default function TourDetailsPage() {
             </span>
             تاریخ برگشت
           </p>
-          <p className={styles.details}>
-            {shamsi.gregorianToJalali(tour.endDate).join("/")}
-          </p>
+          <p className={styles.details}>{end}</p>
         </div>
 
         <div>
@@ -146,7 +149,9 @@ export default function TourDetailsPage() {
             </span>
             ظرفیت
           </p>
-          <p className={styles.details}>{tour.capacity} نفر</p>
+          <p className={styles.details}>
+            {tour.capacity.toLocaleString("fa")} نفر
+          </p>
         </div>
 
         <div className={styles.insurance}>
