@@ -1,0 +1,148 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  cursor: pointer;
+}
+
+.container nav {
+  display: flex;
+  gap: 50px;
+  margin: auto;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.container nav p:hover {
+  color: rgba(40, 167, 69, 1);
+  transition: color 0.2s ease-in-out;
+}
+
+.container button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  border: 2px solid rgba(40, 167, 69, 1);
+  border-radius: 10px;
+  color: rgba(40, 167, 69, 1);
+  background-color: #fff;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.container button:hover {
+  background-color: rgba(40, 167, 69, 0.05);
+  transform: translateY(-1px);
+}
+
+.logged {
+  border: none !important;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 8px); /* فاصله طبیعی از دکمه */
+  left: -32px;
+  width: 240px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform-origin: top center;
+  animation: dropdownFade 0.2s ease-in-out;
+  z-index: 100;
+}
+
+.number {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background-color: rgba(244, 244, 244, 1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.number span {
+  background-color: rgba(217, 217, 217, 1);
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  color: rgba(105, 105, 105, 1);
+  font-size: 18px;
+  padding: 3.5px;
+}
+
+.number p {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(16, 65, 27, 1);
+  direction: ltr;
+  margin: 3px;
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 15px;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.menu a:hover {
+  background-color: rgba(184, 184, 184, 0.255);
+  color: rgba(40, 167, 69, 1);
+}
+
+.menu a span {
+  font-size: 18px;
+}
+
+.logout {
+  color: rgba(212, 0, 0, 1) !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 10px 20px;
+  }
+
+  .container nav {
+    display: none;
+  }
+
+  .menu {
+    right: 0;
+    left: auto;
+    width: 200px;
+  }
+}
