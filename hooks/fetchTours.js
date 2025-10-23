@@ -9,4 +9,9 @@ const fetchTours = async () => {
   }
 };
 
+export async function fetchTourById(tourId) {
+  const res = await axiosInstance.get(`/tour/${tourId}`);
+  return res.data;
+}
+
 export default fetchTours;
