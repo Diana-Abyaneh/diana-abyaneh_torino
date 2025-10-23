@@ -1,5 +1,6 @@
 "use client";
 import * as shamsi from "shamsi-date-converter";
+import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import fetchTours from "@/hooks/fetchTours";
 import { vehicleType } from "@/hooks/vehicle";
@@ -8,7 +9,7 @@ import { length } from "@/hooks/length";
 import Image from "next/image";
 import styles from "../../styles/tours.module.css";
 
-function Page() {
+function Tours() {
   const { data, error, isLoading } = useQuery({
     queryKey: ["tours"],
     queryFn: fetchTours,
@@ -43,9 +44,11 @@ function Page() {
                   <p>{vehicleType(tour.fleetVehicle)}</p>
                 </div>
                 <div className={styles.reserve}>
-                  <button>رزرو</button>
+                  <Link href={`/tours/${tour.id}`}>
+                    <button>جزئیات</button>
+                  </Link>
                   <p>
-                    <span>{((tour.price)*100).toLocaleString()}</span> تومان
+                    <span>{tour.price.toLocaleString()}</span> تومان
                   </p>
                 </div>
               </div>
@@ -59,4 +62,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default Tours;
