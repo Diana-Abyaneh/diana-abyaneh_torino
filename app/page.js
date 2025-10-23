@@ -15,10 +15,8 @@ import styles from "../styles/page.module.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
-import { useRef } from "react";
 
 export default function Home() {
-
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
