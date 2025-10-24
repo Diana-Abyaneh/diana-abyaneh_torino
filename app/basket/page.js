@@ -33,7 +33,6 @@ export default function BasketPage() {
   });
 
   const router = useRouter();
-  const [setShowDatePicker] = useState(false);
 
   const {
     register,
@@ -59,12 +58,6 @@ export default function BasketPage() {
     orderMutation.mutate(data);
   };
 
-  const handleOutsideClick = (e) => {
-    if (e.target.id !== "date-picker-input") {
-      setShowDatePicker(false);
-    }
-  };
-
   if (isLoading) return <div>در حال بارگذاری...</div>;
   if (error) return <div>خطا در دریافت سبد خرید</div>;
   if (!data || Object.keys(data).length === 0)
@@ -73,7 +66,7 @@ export default function BasketPage() {
   const tour = data;
 
   return (
-    <div className={styles.container} onClick={handleOutsideClick}>
+    <div className={styles.container}>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <h2>اطلاعات مسافر</h2>
 
