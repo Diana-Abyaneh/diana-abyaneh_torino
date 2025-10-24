@@ -2,9 +2,17 @@
 
 import { useEffect, useState } from "react";
 import { getUserTours } from "@/hooks/user";
-import { FaBus, FaPlane, FaTrain, FaShip, FaCalendarAlt, FaMapMarkerAlt, FaMoneyBillWave } from "react-icons/fa";
+import {
+  FaBus,
+  FaPlane,
+  FaTrain,
+  FaShip,
+  FaCalendarAlt,
+  FaMapMarkerAlt,
+  FaMoneyBillWave,
+} from "react-icons/fa";
 import styles from "@/styles/myTours.module.css";
-import { vehicleType } from "@/hooks/vehicle";
+import { vehicleType } from "@/services/vehicle";
 
 export default function MyTours() {
   const [tours, setTours] = useState([]);
@@ -41,28 +49,32 @@ export default function MyTours() {
                 <h3 className={styles.tourTitle}>{tour.title}</h3>
                 <span className={styles.tourId}>#{tour.id}</span>
               </div>
-              
+
               <div className={styles.cardBody}>
                 <div className={styles.routeSection}>
                   <div className={styles.location}>
                     <FaMapMarkerAlt className={styles.locationIcon} />
                     <div className={styles.locationInfo}>
                       <span className={styles.locationLabel}>مبدا</span>
-                      <span className={styles.locationName}>{tour.origin.name}</span>
+                      <span className={styles.locationName}>
+                        {tour.origin.name}
+                      </span>
                     </div>
                   </div>
-                  
+
                   <div className={styles.locationArrow}>←</div>
-                  
+
                   <div className={styles.location}>
                     <FaMapMarkerAlt className={styles.locationIcon} />
                     <div className={styles.locationInfo}>
                       <span className={styles.locationLabel}>مقصد</span>
-                      <span className={styles.locationName}>{tour.destination.name}</span>
+                      <span className={styles.locationName}>
+                        {tour.destination.name}
+                      </span>
                     </div>
                   </div>
                 </div>
-                
+
                 <div className={styles.datesSection}>
                   <div className={styles.dateItem}>
                     <FaCalendarAlt className={styles.dateIcon} />
@@ -73,7 +85,7 @@ export default function MyTours() {
                       </span>
                     </div>
                   </div>
-                  
+
                   <div className={styles.dateItem}>
                     <FaCalendarAlt className={styles.dateIcon} />
                     <div className={styles.dateInfo}>
@@ -84,7 +96,7 @@ export default function MyTours() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className={styles.cardFooter}>
                   <div className={styles.vehicleSection}>
                     {vehicleIcon(tour.fleetVehicle)}
@@ -92,7 +104,7 @@ export default function MyTours() {
                       {vehicleType(tour.fleetVehicle)}
                     </span>
                   </div>
-                  
+
                   <div className={styles.priceSection}>
                     <FaMoneyBillWave className={styles.priceIcon} />
                     <span className={styles.priceValue}>
