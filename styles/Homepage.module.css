@@ -352,4 +352,8 @@
     width: 60vw;
     height: 680px;
   }
+
+  .info {
+    margin: auto;
+  }
 }

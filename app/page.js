@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FaPhone } from "react-icons/fa6";
 import Tours from "./tours/page";
 import Image from "next/image";
-import travel from "../images/design.svg";
+import travel from "../images/travel.svg";
 import man from "../images/professional.svg";
 import eco from "../images/R (1).svg";
 import Login from "./auth/login/page";
