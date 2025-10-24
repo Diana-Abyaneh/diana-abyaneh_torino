@@ -2,28 +2,74 @@
 import * as shamsi from "shamsi-date-converter";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
-import fetchTours from "@/hooks/fetchTours";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { vehicleType } from "@/hooks/vehicle";
 import { month } from "@/hooks/months";
 import { length } from "@/hooks/length";
+import fetchTours from "@/hooks/fetchTours";
 import Image from "next/image";
 import styles from "../../styles/tours.module.css";
+import SearchForm from "@/components/forms/searchForm";
 
 function Tours() {
-  const { data, error, isLoading } = useQuery({
-    queryKey: ["tours"],
-    queryFn: fetchTours,
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const [filters, setFilters] = useState({
+    originId: searchParams.get("originId") || "",
+    destinationId: searchParams.get("destinationId") || "",
+    startDate: searchParams.get("startDate") || "",
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  const handleSearch = ({ originId, destinationId, startDate }) => {
+    const params = new URLSearchParams();
+    if (originId) params.set("originId", originId);
+    if (destinationId) params.set("destinationId", destinationId);
+    if (startDate) params.set("startDate", startDate);
 
-  if (error) {
-    return <div>Error: {error.message || "Something went wrong!"}</div>;
-  }
+    const newUrl = `/tours?${params.toString()}`;
+    router.push(newUrl, { scroll: false });
+
+    setFilters({ originId, destinationId, startDate });
+  };
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+
+    if (filters.originId) params.set("originId", filters.originId);
+    if (filters.destinationId)
+      params.set("destinationId", filters.destinationId);
+    if (filters.startDate) params.set("startDate", filters.startDate);
+
+    const queryString = params.toString();
+    router.replace(`?${queryString}`, { scroll: false });
+  }, [filters, router]);
+
+  useEffect(() => {
+    const originId = searchParams.get("originId");
+    const destinationId = searchParams.get("destinationId");
+    const startDate = searchParams.get("startDate");
+
+    if (originId || destinationId || startDate) {
+      setFilters({ originId, destinationId, startDate });
+    }
+  }, [searchParams]);
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["tours", filters],
+    queryFn: () => fetchTours(filters),
+  });
 
   return (
     <div className={styles.container}>
-      <h1>همه تور ها</h1>
+      <SearchForm onSearch={handleSearch} defaultValues={filters} />
+
+      <h1>همه تورها</h1>
+
+      {isLoading && <p>در حال بارگذاری...</p>}
+      {error && <p>خطا در دریافت اطلاعات</p>}
+
       <ul>
         {data && data.length > 0 ? (
           data.map((tour) => (
