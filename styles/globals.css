@@ -21,7 +21,7 @@ body {
 body {
   font-family: var(--font-primary);
   font-weight: 400;
-  padding: 0 163px;
+  padding: 0 16px;
 }
 
 * {
@@ -32,11 +32,11 @@ body {
   margin: 0;
 }
 
-
 .footerContainer {
-  padding: 20px;
+  padding: 16px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 20px;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -46,24 +46,25 @@ body {
 }
 
 .certificates {
-  width: 900px;
-  text-align: left;
+  width: 100%;
+  text-align: right;
 }
 
 .certificates p {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
-  padding-bottom: 20px;
+  padding-bottom: 16px;
 }
 
-.images img{
-  margin-right: 15px;
+.images img {
+  margin-left: 12px;
+  margin-right: 0;
 }
 
 .rights {
   font-weight: 500;
-  font-size: 18px;
-  padding: 5px;
+  font-size: 16px;
+  padding: 8px;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   text-align: center;
 }
@@ -89,4 +90,25 @@ button {
   background-color: rgba(76, 76, 76, 0.5);
   border-radius: 5px;
   padding: 5px;
+}
+
+@media (min-width: 768px) {
+  body {
+    padding: 0 32px;
+  }
+  
+}
+
+@media (min-width: 1024px) {
+  body {
+    padding: 0 80px;
+  }
+  
+}
+
+@media (min-width: 1200px) {
+  body {
+    padding: 0 163px;
+  }
+  
 }

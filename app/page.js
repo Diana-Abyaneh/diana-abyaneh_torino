@@ -1,16 +1,11 @@
 "use client";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, EffectFade } from "swiper/modules";
 import { FaPhone } from "react-icons/fa6";
 import Tours from "./tours/page";
 import Image from "next/image";
 import travel from "../images/design.svg";
 import man from "../images/professional.svg";
 import eco from "../images/R (1).svg";
-import car from "../images/car.svg";
-import oip from "../images/OIP.svg";
-import window from "../images/window.svg";
-import styles from "../styles/page.module.css";
+import styles from "../styles/Homepage.module.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
@@ -62,29 +57,8 @@ export default function Home() {
             تاریخی را خریداری کنید.
           </p>
         </div>
-        <div className={styles.sliderContainer}>
-          <Swiper
-            modules={[Navigation, EffectFade]}
-            navigation={true}
-            effect="fade"
-            speed={500}
-            slidesPerView={1}
-            loop={true}
-            className={styles.imgSwiper}
-          >
-            <SwiperSlide className={styles.slide}>
-              <Image src={eco} alt="بوم گردی" layout="responsive" />
-            </SwiperSlide>
-            <SwiperSlide className={styles.slide}>
-              <Image src={car} alt="car" layout="responsive" />
-            </SwiperSlide>
-            <SwiperSlide className={styles.slide}>
-              <Image src={oip} alt="oip" layout="responsive" />
-            </SwiperSlide>
-            <SwiperSlide className={styles.slide}>
-              <Image src={window} alt="window" layout="responsive" />
-            </SwiperSlide>
-          </Swiper>
+        <div className={styles.img}>
+          <Image src={eco} alt="بوم گردی" layout="responsive" />
         </div>
       </div>
     </div>

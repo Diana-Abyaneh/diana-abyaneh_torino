@@ -1,0 +1,293 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.imgContainer {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.form h2,
+.form span {
+  color: rgba(89, 89, 89, 1);
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.form h2 span {
+  color: rgba(40, 167, 69, 1);
+}
+
+.advertise {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}
+
+.texts {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: rgba(40, 167, 69, 1);
+  border-radius: 8px;
+}
+
+.texts div {
+  padding: 16px;
+}
+
+.texts div h2 {
+  color: white;
+  font-weight: 800;
+  font-size: 24px;
+}
+
+.texts div h2 span {
+  color: rgba(16, 65, 27, 1);
+  font-weight: 800;
+  font-size: 24px;
+}
+
+.texts div h4 {
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.texts img {
+  align-items: center;
+  margin: auto;
+}
+
+.info {
+  text-align: center;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.call {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.call h3 {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.call span {
+  width: 14px;
+}
+
+.info button {
+  background-color: rgba(16, 65, 27, 1);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 24px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.whyUs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 16px;
+}
+
+.whyUs div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.question {
+  background: linear-gradient(rgba(40, 167, 69, 1), rgba(16, 65, 27, 1));
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  text-align: center;
+  font-weight: 800;
+  margin-left: 8px;
+}
+
+.whyUs div h1 {
+  font-weight: 800;
+  font-size: 28px;
+}
+
+.torino {
+  color: rgba(40, 167, 69, 1);
+  font-weight: 800;
+}
+
+.whyUs div h2 {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 40px;
+}
+
+.whyUs div p {
+  text-align: justify;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 32px;
+}
+
+.img {
+  width: 100%;
+  height: 450px;
+}
+
+@media (min-width: 768px) {
+
+  .certificates {
+    width: 600px;
+    text-align: left;
+  }
+  
+  .advertise {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .texts {
+    flex-direction: row;
+    gap: 80px;
+  }
+  
+  .whyUs {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .whyUs div {
+    width: 45%;
+  }
+  
+  .sliderContainer {
+    width: 50%;
+    height: 400px;
+  }
+
+}
+
+@media (min-width: 1024px) {
+  
+  .certificates {
+    width: 700px;
+  }
+  
+  .certificates p {
+    font-size: 18px;
+  }
+  
+  .rights {
+    font-size: 18px;
+  }
+  
+  .form h2,
+  .form span {
+    font-size: 28px;
+  }
+  
+  
+  .texts div h2 {
+    font-size: 36px;
+  }
+  
+  .texts div h2 span {
+    font-size: 36px;
+  }
+  
+  .texts div h4 {
+    font-size: 24px;
+  }
+  
+
+  .call h3 {
+    font-size: 22px;
+  }
+  
+  .info button {
+    padding: 10px 30px;
+    font-size: 15px;
+  }
+  
+  .whyUs {
+    padding: 20px;
+  }
+  
+  .whyUs div h1 {
+    font-size: 36px;
+  }
+  
+  .whyUs div h2 {
+    font-size: 25px;
+  }
+  
+  .whyUs div p {
+    font-size: 18px;
+  }
+  
+  .img {
+    width: 55%;
+    height: 500px;
+  }
+  
+  .question {
+    width: 55px;
+    height: 55px;
+  }
+
+
+}
+
+@media (min-width: 1200px) {
+  
+  .certificates {
+    width: 900px;
+  }
+  
+  .texts {
+    gap: 200px;
+  }
+  
+  .texts div h2 {
+    font-size: 48px;
+  }
+  
+  .texts div h2 span {
+    font-size: 48px;
+  }
+  
+  .texts div h4 {
+    font-size: 32px;
+  }
+  
+  .whyUs div h1 {
+    font-size: 45px;
+  }
+  
+  .img {
+    width: 60vw;
+    height: 680px;
+  }
+}
