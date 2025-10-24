@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { IoPerson } from "react-icons/io5";
 import { FaAngleDown } from "react-icons/fa6";
 import { LuLogOut } from "react-icons/lu";
+import { HiMenu, HiX } from "react-icons/hi";
 import { toast } from "react-toastify";
 import { useAuth } from "@/context/authContext";
 import Cookies from "js-cookie";
@@ -17,7 +18,9 @@ export default function Header() {
   const router = useRouter();
   const { user, logout, setUser } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const menuRef = useRef(null);
+  const mobileNavRef = useRef(null);
 
   useEffect(() => {
     const token = Cookies.get("accessToken");
@@ -39,6 +42,9 @@ export default function Header() {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setMenuOpen(false);
       }
+      if (mobileNavRef.current && !mobileNavRef.current.contains(e.target)) {
+        setMobileNavOpen(false);
+      }
     };
     document.addEventListener("mousedown", handleOutsideClick);
     return () => document.removeEventListener("mousedown", handleOutsideClick);
@@ -50,6 +56,7 @@ export default function Header() {
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+    setMobileNavOpen(false);
   };
 
   const handleUserClick = () => {
@@ -66,22 +73,33 @@ export default function Header() {
     setTimeout(() => router.push("/"), 1500);
   };
 
+  const handleNavClick = (path) => {
+    router.push(path);
+    setMobileNavOpen(false);
+  };
+
   return (
     <header className={styles.container}>
-      <div>
+      <button 
+        className={styles.mobileMenuButton}
+        onClick={() => setMobileNavOpen(!mobileNavOpen)}
+      >
+        {mobileNavOpen ? <HiX /> : <HiMenu />}
+      </button>
+
+      <div className={styles.logo}>
         <Image
           src={torino}
           alt="Torino logo"
-          className={styles.logo}
           onClick={handleHomePage}
         />
       </div>
 
       <nav className={styles.nav}>
         <p onClick={handleHomePage}>صفحه اصلی</p>
-        <p>خدمات گردشگری</p>
-        <p>درباره ما</p>
-        <p>تماس با ما</p>
+        <p onClick={() => handleNavClick("/services")}>خدمات گردشگری</p>
+        <p onClick={() => handleNavClick("/about")}>درباره ما</p>
+        <p onClick={() => handleNavClick("/contact")}>تماس با ما</p>
       </nav>
 
       <div ref={menuRef}>
@@ -116,6 +134,15 @@ export default function Header() {
           </div>
         )}
       </div>
+
+      {mobileNavOpen && (
+        <div ref={mobileNavRef} className={styles.mobileNav}>
+          <p onClick={handleHomePage}>صفحه اصلی</p>
+          <p onClick={() => handleNavClick("/services")}>خدمات گردشگری</p>
+          <p onClick={() => handleNavClick("/about")}>درباره ما</p>
+          <p onClick={() => handleNavClick("/contact")}>تماس با ما</p>
+        </div>
+      )}
     </header>
   );
 }

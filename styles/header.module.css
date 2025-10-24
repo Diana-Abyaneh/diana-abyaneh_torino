@@ -2,20 +2,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
+  padding: 12px 16px;
   position: sticky;
   top: 0;
   z-index: 1000;
+  background: white;
 }
 
 .logo {
   cursor: pointer;
+  display: none;
 }
 
 .container nav {
-  display: flex;
-  gap: 50px;
-  margin: auto;
+  display: none;
   color: #333;
   font-size: 16px;
   cursor: pointer;
@@ -31,12 +31,12 @@
   align-items: center;
   gap: 8px;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   border: 2px solid rgba(40, 167, 69, 1);
-  border-radius: 10px;
+  border-radius: 8px;
   color: rgba(40, 167, 69, 1);
   background-color: #fff;
-  padding: 8px 15px;
+  padding: 6px 12px;
   cursor: pointer;
   transition: all 0.25s ease;
   position: relative;
@@ -53,7 +53,7 @@
 
 .menu {
   position: absolute;
-  top: calc(100% + 8px); /* فاصله طبیعی از دکمه */
+  top: calc(100% + 8px);
   left: -32px;
   width: 240px;
   background-color: #fff;
@@ -120,6 +120,41 @@
   border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  gap: 12px;
+}
+
+.mobileNav p {
+  padding: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.mobileNav p:hover {
+  color: rgba(40, 167, 69, 1);
+  background: rgba(40, 167, 69, 0.05);
+}
+
+.mobileMenuButton {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+  padding: 8px;
+}
+
 @keyframes dropdownFade {
   from {
     opacity: 0;
@@ -131,15 +166,34 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (min-width: 901px) {
   .container {
-    padding: 10px 20px;
+    padding: 12px 0;
+  }
+
+  .logo {
+    display: block;
+    flex: 0;
   }
 
   .container nav {
-    display: none;
+    display: flex;
+    gap: 50px;
+    margin: auto;
   }
 
+  .container button {
+    font-size: 16px;
+    padding: 8px 15px;
+    border-radius: 10px;
+  }
+
+  .mobileMenuButton {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
   .menu {
     right: 0;
     left: auto;
