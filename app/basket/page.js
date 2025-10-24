@@ -1,15 +1,17 @@
 "use client";
 
+import * as yup from "yup";
+import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { Controller, useForm } from "react-hook-form";
+import { DatePicker } from "zaman";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { length } from "@/hooks/length";
 import { fetchBasket } from "@/hooks/fetchBasket";
 import { createOrder } from "@/hooks/fetchOrder";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { toast } from "react-toastify";
 import styles from "@/styles/basket.module.css";
-import { length } from "@/hooks/length";
-import { useRouter } from "next/navigation";
 
 const schema = yup.object().shape({
   fullName: yup
@@ -31,10 +33,12 @@ export default function BasketPage() {
   });
 
   const router = useRouter();
+  const [setShowDatePicker] = useState(false);
 
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -55,6 +59,12 @@ export default function BasketPage() {
     orderMutation.mutate(data);
   };
 
+  const handleOutsideClick = (e) => {
+    if (e.target.id !== "date-picker-input") {
+      setShowDatePicker(false);
+    }
+  };
+
   if (isLoading) return <div>در حال بارگذاری...</div>;
   if (error) return <div>خطا در دریافت سبد خرید</div>;
   if (!data || Object.keys(data).length === 0)
@@ -63,7 +73,7 @@ export default function BasketPage() {
   const tour = data;
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={handleOutsideClick}>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <h2>اطلاعات مسافر</h2>
 
@@ -81,13 +91,26 @@ export default function BasketPage() {
 
         <div className={styles.field}>
           <label>تاریخ تولد</label>
-          <input type="date" {...register("birthDate")} />
+          <Controller
+            name="birthDate"
+            control={control}
+            render={({ field }) => (
+              <DatePicker
+                value={field.value}
+                onChange={(dateObj) => field.onChange(dateObj.value)}
+                round="x2"
+                accentColor="#28a745"
+                locale="fa"
+              />
+            )}
+          />
           <p className={styles.error}>{errors.birthDate?.message}</p>
         </div>
 
         <div className={styles.field}>
           <label>جنسیت</label>
           <select {...register("gender")}>
+            <option value="">انتخاب کنید</option>
             <option value="male">مرد</option>
             <option value="female">زن</option>
           </select>
