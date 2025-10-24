@@ -1,16 +1,20 @@
 "use client";
+import { useState } from "react";
 import { FaPhone } from "react-icons/fa6";
 import Tours from "./tours/page";
 import Image from "next/image";
 import travel from "../images/design.svg";
 import man from "../images/professional.svg";
 import eco from "../images/R (1).svg";
+import Login from "./auth/login/page";
 import styles from "../styles/Homepage.module.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
 export default function Home() {
+  const [showLogin, setShowLogin] = useState(false);
+
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
@@ -39,7 +43,7 @@ export default function Home() {
               <FaPhone />
             </span>
           </div>
-          <button>اطلاعات بیشتر</button>
+          <button onClick={() => setShowLogin(true)}>اطلاعات بیشتر</button>
         </div>
       </div>
       <div className={styles.whyUs}>
@@ -61,6 +65,20 @@ export default function Home() {
           <Image src={eco} alt="بوم گردی" layout="responsive" />
         </div>
       </div>
+
+      {showLogin && (
+        <div className={styles.overlay}>
+          <div className={styles.loginModal}>
+            <Login />
+            <button 
+              className={styles.closeButton}
+              onClick={() => setShowLogin(false)}
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
