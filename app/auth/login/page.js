@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 import { PropagateLoader } from "react-spinners";
 import { useAuth } from "@/context/authContext";
 import Cookies from "js-cookie";
-import styles from "@/styles/login.module.css";
 import { toast } from "react-toastify";
+import styles from "@/styles/login.module.css";
 import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
@@ -33,7 +33,6 @@ function Login() {
     try {
       setPhone(data.phone);
       Cookies.set("phone", data.phone, { expires: 0.1 });
-
       router.push("/auth/verify");
     } catch (error) {
       console.error("Login Error:", error);
@@ -47,25 +46,29 @@ function Login() {
 
   return (
     <div className={styles.container}>
-      <h1>ورود به تورینو</h1>
+      <h1 className={styles.title}>ورود به تورینو</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <label>شماره موبایل خود را وارد کنید</label>
+        <label className={styles.label}>شماره موبایل خود را وارد کنید</label>
         <input
           type="tel"
           placeholder="09123456789"
           {...register("phone")}
-          className={errors.phone ? styles.errorInput : ""}
+          className={`${styles.input} ${errors.phone ? styles.errorInput : ""}`}
           disabled={isLoading}
         />
         {errors.phone && (
           <p className={styles.errorText}>{errors.phone.message}</p>
         )}
 
-        <button type="submit" disabled={isLoading} className={styles.submitButton}>
+        <button 
+          type="submit" 
+          disabled={isLoading} 
+          className={styles.submitButton}
+        >
           {isLoading ? (
             <PropagateLoader
-              color="rgba(40, 167, 69, 1)"
+              color="white"
               size={10}
               speedMultiplier={0.8}
             />
