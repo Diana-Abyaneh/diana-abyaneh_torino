@@ -2,8 +2,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade } from "swiper/modules";
 import { FaPhone } from "react-icons/fa6";
-import Page from "./tours/page";
-import SearchForm from "@/components/forms/searchForm";
+import Tours from "./tours/page";
 import Image from "next/image";
 import travel from "../images/design.svg";
 import man from "../images/professional.svg";
@@ -26,9 +25,8 @@ export default function Home() {
         <h2>
           <span>تورینو</span> برگزار کننده بهترین تور های داخلی و خارجی
         </h2>
-        <SearchForm />
       </div>
-      <Page />
+      <Tours />
       <div className={styles.advertise}>
         <div className={styles.texts}>
           <div>
