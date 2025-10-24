@@ -13,6 +13,7 @@ import { FaBus } from "react-icons/fa6";
 import { MdPeopleAlt } from "react-icons/md";
 import { HiShieldExclamation } from "react-icons/hi";
 import { toast } from "react-toastify";
+import origins from "@/data/origins";
 import Image from "next/image";
 import styles from "@/styles/tourDetails.module.css";
 
@@ -64,6 +65,8 @@ export default function TourDetailsPage() {
   const start = new Date(tour.startDate).toLocaleDateString("fa-IR");
   const end = new Date(tour.endDate).toLocaleDateString("fa-IR");
 
+  const originId = tour.origin.id;
+
   return (
     <div className={styles.container}>
       <div className={styles.tourInfo}>
@@ -100,7 +103,6 @@ export default function TourDetailsPage() {
           </div>
         </div>
       </div>
-
       <div className={styles.tourDet}>
         <div>
           <p className={styles.lable}>
@@ -109,7 +111,10 @@ export default function TourDetailsPage() {
             </span>
             مبدا
           </p>
-          <p>{tour.origin?.name || "نامشخص"}</p>
+          <p className={styles.details}>
+            {origins.find((o) => String(o.id) === String(tour.origin.id))
+              ?.name || "نامشخص"}
+          </p>
         </div>
 
         <div>
