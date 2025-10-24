@@ -1,0 +1,186 @@
+.profileContainer {
+    display: flex;
+    flex-direction: row;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    min-height: 85vh;
+  }
+  
+  .sidebar {
+    width: 240px;
+    height: fit-content;
+    border-radius: 10px;
+    background: rgba(40, 167, 69, 0.08);
+    padding: 24px 0;
+    border-left: 2px solid rgba(40, 167, 69, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar li {
+    margin-bottom: 8px;
+  }
+  
+  .sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    color: #333;
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  
+  .sidebar a:hover {
+    background: rgba(40, 167, 69, 0.1);
+    color: rgba(40, 167, 69, 1);
+  }
+  
+  .active a {
+    background: rgba(40, 167, 69, 0.2);
+    color: rgba(40, 167, 69, 1);
+    font-weight: 600;
+    border-right: 4px solid rgba(40, 167, 69, 1);
+  }
+  
+  .mainContent {
+    flex: 1;
+    padding: 40px;
+    background-color: #fff;
+    color: #222;
+    overflow-y: auto;
+  }
+  
+  .profileBox {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid rgba(40, 167, 69, 0.2);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .header h2 {
+    font-size: 22px;
+    color: rgba(40, 167, 69, 1);
+  }
+  
+  .editBtn,
+  .saveBtn,
+  .cancelBtn {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .editBtn {
+    background: rgba(40, 167, 69, 0.1);
+    color: rgba(40, 167, 69, 1);
+  }
+  
+  .saveBtn {
+    background: rgba(40, 167, 69, 1);
+    color: #fff;
+  }
+  
+  .cancelBtn {
+    background: #eee;
+    color: #555;
+    margin-right: 8px;
+  }
+  
+.profileBox  section {
+    margin-bottom: 32px;
+  }
+  
+.profileBox  section h3 {
+    font-size: 18px;
+    color: rgba(40, 167, 69, 1);
+    margin-bottom: 12px;
+  }
+  
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  
+  .row label {
+    flex: 0 0 35%;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .row input,
+  .row select {
+    flex: 0 0 60%;
+    border: 1px solid rgba(40, 167, 69, 0.3);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s;
+  }
+  
+  .row input:focus,
+  .row select:focus {
+    border-color: rgba(40, 167, 69, 1);
+  }
+  
+  .dateInput {
+    width: 100%;
+  }
+  
+ .listBox  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+.listBox  table thead {
+    background: rgba(40, 167, 69, 0.15);
+  }
+  
+.listBox  table th {
+    text-align: right;
+    padding: 10px;
+    color: rgba(40, 167, 69, 1);
+    font-weight: 600;
+  }
+  
+.listBox  table td {
+    text-align: right;
+    padding: 10px;
+    border-bottom: 1px solid rgba(40, 167, 69, 0.1);
+  }
+  
+.listBox  table tr:hover {
+    background: rgba(40, 167, 69, 0.05);
+  }
+  

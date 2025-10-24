@@ -47,7 +47,7 @@
 
 .submitBtn {
   width: 100%;
-  background: #0d9488;
+  background: rgba(40, 167, 69, 1);
   color: white;
   border: none;
   padding: 0.8rem;
@@ -58,7 +58,7 @@
 }
 
 .submitBtn:hover {
-  background: #0f766e;
+  background: rgb(27, 110, 46);
 }
 
 .summary {
@@ -84,6 +84,30 @@
 .price {
   margin-top: 1rem;
   font-size: 1.1rem;
-  color: #0d9488;
+  color: rgba(40, 167, 69, 1);
   font-weight: bold;
+}
+
+.datePickerContainer {
+  position: relative;
+  z-index: 1000;
+}
+
+.zaman-datepicker {
+  direction: rtl;
+  font-family: 'Vazir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.zaman-datepicker .header {
+  background-color: rgba(40, 167, 69, 1);
+  color: white;
+}
+
+.zaman-datepicker .day.selected {
+  background-color: rgba(40, 167, 69, 1);
+  color: white;
+}
+
+.zaman-datepicker .today {
+  border: 1px solid rgba(40, 167, 69, 1);
 }
