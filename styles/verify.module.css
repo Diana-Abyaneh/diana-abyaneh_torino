@@ -1,14 +1,26 @@
 .container {
-  max-width: 400px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1.5rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.phoneText {
+.container h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgba(40, 167, 69, 1);
+  margin-bottom: 1rem;
+}
+
+.container p {
   margin: 1rem 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #666;
+  line-height: 1.5;
 }
 
 .phoneNumber {
@@ -18,104 +30,127 @@
   display: inline-block;
 }
 
-.errorText {
-  color: #ff4444;
-  margin: 1rem 0;
-}
-
-.otpContainer {
+.form {
+  width: 100%;
+  max-width: 400px;
   margin: 2rem 0;
 }
 
-.otpLabel {
-  display: block;
-  margin-bottom: 1rem;
-  font-weight: bold;
-}
-
-.otpContainerStyle {
+.otpContainer {
   direction: ltr;
+  display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  margin: 1rem 0;
+  gap: 8px;
+  margin: 1.5rem 0;
 }
 
 .otpInput {
-  width: 50px !important;
-  height: 50px;
+  width: 45px !important;
+  height: 45px;
   border: 2px solid #ddd;
   border-radius: 8px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
   text-align: center;
+  direction: ltr;
 }
 
 .otpInput:focus {
-  border-color: rgb(30, 124, 52);
+  border-color: rgba(40, 167, 69, 1);
   outline: none;
-  box-shadow: 0 0 0 2px rgb(40, 167, 69);
+  box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.3);
 }
 
-.timerContainer {
-  margin: 1rem 0;
-}
-
-.timerText {
-  color: #666;
-  font-size: 0.9rem;
-}
-
-.timer {
-  font-weight: bold;
-  color: #ff6b6b;
-  font-family: monospace;
-}
-
-.timerExpired {
-  color: #ff4444;
-  font-weight: bold;
-}
-
-.submitButton {
+.form button {
   width: 100%;
   padding: 1rem;
-  background-color: rgb(40, 167, 69);
+  background-color: rgba(40, 167, 69, 1);
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin-top: 1.5rem;
 }
 
-.submitButton:hover:not(.disabled) {
-  background-color: rgb(30, 124, 52);
+.form button:hover:not(:disabled) {
+  background-color: rgba(33, 136, 56, 1);
 }
 
-.submitButton.disabled {
+.form button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
 
-.resendContainer {
-  margin-top: 1.5rem;
-}
-
-.resendButton {
+.container > button {
   background: none;
   border: none;
-  color: rgb(40, 167, 69);
+  color: rgba(40, 167, 69, 1);
   cursor: pointer;
   font-size: 0.9rem;
   text-decoration: underline;
+  margin-top: 1rem;
+  padding: 0.5rem;
 }
 
-.resendButton:hover:not(.disabled) {
-  color: rgb(33, 138, 58);
+.container > button:hover:not(:disabled) {
+  color: rgba(33, 136, 56, 1);
 }
 
-.resendButton.disabled {
+.container > button:disabled {
   color: #ccc;
   cursor: not-allowed;
   text-decoration: none;
+}
+
+.container > p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.errorText {
+  color: #e63946;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 2rem;
+    max-width: 400px;
+  }
+
+  .container h1 {
+    font-size: 1.75rem;
+  }
+
+  .container p {
+    font-size: 1rem;
+  }
+
+  .otpInput {
+    width: 50px !important;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  .otpContainer {
+    gap: 10px;
+  }
+
+  .form button {
+    padding: 1.1rem;
+    font-size: 1.1rem;
+  }
+
+  .container > button {
+    font-size: 1rem;
+  }
+
+  .container > p {
+    font-size: 1rem;
+  }
 }

@@ -42,7 +42,7 @@ function Verify() {
     try {
       const res = await axiosInstance.post("/auth/send-otp", { mobile });
       if (res.status === 200) {
-        toast.success("کد تأیید ارسال شد ✅", { position: "top-center" });
+        toast.success("کد تأیید ارسال شد", { position: "top-center" });
         if (res.data?.code) {
           toast.info(`کد ورود شما: ${res.data.code}`, { position: "top-right" });
         }
@@ -51,7 +51,6 @@ function Verify() {
         setCanResend(false);
       }
     } catch (err) {
-      console.error("Send OTP error:", err);
       toast.error("خطا در ارسال کد", { position: "top-center" });
       hasSentOtp.current = false;
     } finally {
@@ -95,14 +94,12 @@ function Verify() {
         Cookies.set("user", JSON.stringify(completeUser), { expires: 7 });
         setUser(completeUser);
 
-        console.log("✅ Logged in user:", completeUser);
-        toast.success("ورود با موفقیت انجام شد ✅", { position: "top-center" });
+        toast.success("ورود با موفقیت انجام شد", { position: "top-center" });
         router.push("/");
       } else {
         toast.error("کد معتبر نیست", { position: "top-center" });
       }
     } catch (err) {
-      console.error("Verify error:", err);
       toast.error("کد اشتباه یا منقضی شده", { position: "top-center" });
     } finally {
       setIsLoading(false);
@@ -113,18 +110,20 @@ function Verify() {
     <div className={styles.container}>
       <h1>تأیید شماره موبایل</h1>
       <p>
-        کد برای شماره <b>{phone}</b> ارسال شد.
+        کد برای شماره <span className={styles.phoneNumber}>{phone}</span> ارسال شد.
       </p>
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <OtpInput
-          value={code}
-          onChange={(v) => setValue("code", v)}
-          numInputs={6}
-          inputType="number"
-          inputStyle={styles.otpInput}
-          shouldAutoFocus
-        />
+        <div className={styles.otpContainer}>
+          <OtpInput
+            value={code}
+            onChange={(v) => setValue("code", v)}
+            numInputs={6}
+            inputType="number"
+            inputStyle={styles.otpInput}
+            shouldAutoFocus
+          />
+        </div>
         <button type="submit" disabled={isLoading || code.length < 6}>
           {isLoading ? "در حال تأیید..." : "تأیید کد"}
         </button>
