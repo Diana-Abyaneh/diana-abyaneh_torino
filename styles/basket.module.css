@@ -1,0 +1,89 @@
+.container {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  direction: rtl;
+}
+
+.form {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.field label {
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 0.4rem;
+}
+
+.field input,
+.field select {
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.error {
+  color: #d9534f;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+}
+
+.submitBtn {
+  width: 100%;
+  background: #0d9488;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 0.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submitBtn:hover {
+  background: #0f766e;
+}
+
+.summary {
+  background: #fafafa;
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.summary h2 {
+  margin-bottom: 1rem;
+}
+
+.summary p {
+  font-size: 0.95rem;
+  margin: 0.5rem 0;
+  color: #444;
+}
+
+.price {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: #0d9488;
+  font-weight: bold;
+}

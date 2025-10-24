@@ -1,39 +1,64 @@
 .container {
   display: flex;
-  gap: 10px;
-  margin: 25px auto;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 20px;
-  padding: 10px;
-  width: max-content;
-}
-
-.container label {
-  font-size: 20px;
-  margin: auto;
-  padding-top: 8px;
-}
-
-.container input {
-  border: none;
-  border-left: 2px solid rgba(0, 0, 0, 0.15);
-}
-
-.date {
-  border-left: none !important;
-}
-
-.date::-webkit-calendar-picker-indicator {
-  display: none;
-}
-
-.container button {
-  background-color: rgba(40, 167, 69, 1);
-  color: white;
-  font-weight: 500;
-  font-size: 16px;
-  border: none;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 1rem 1.5rem;
   border-radius: 16px;
-  padding: 8px 30px;
+  gap: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.field label {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: rgba(40, 167, 69, 1);
+}
+
+.field select,
+.dateInput {
+  width: 180px;
+  padding: 0.6rem 2rem 0.6rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  background-color: #fff;
+  color: #333;
+  appearance: none;
+}
+
+.dateInput::placeholder {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.error {
+  color: #e63946;
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+}
+
+.submit {
+  background: rgba(40, 167, 69, 1);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit:hover {
+  background: rgba(33, 136, 56, 1);
 }

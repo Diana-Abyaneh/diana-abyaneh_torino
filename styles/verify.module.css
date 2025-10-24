@@ -1,0 +1,121 @@
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.phoneText {
+  margin: 1rem 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+.phoneNumber {
+  font-weight: bold;
+  color: #000;
+  direction: ltr;
+  display: inline-block;
+}
+
+.errorText {
+  color: #ff4444;
+  margin: 1rem 0;
+}
+
+.otpContainer {
+  margin: 2rem 0;
+}
+
+.otpLabel {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.otpContainerStyle {
+  direction: ltr;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.otpInput {
+  width: 50px !important;
+  height: 50px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.otpInput:focus {
+  border-color: rgb(30, 124, 52);
+  outline: none;
+  box-shadow: 0 0 0 2px rgb(40, 167, 69);
+}
+
+.timerContainer {
+  margin: 1rem 0;
+}
+
+.timerText {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.timer {
+  font-weight: bold;
+  color: #ff6b6b;
+  font-family: monospace;
+}
+
+.timerExpired {
+  color: #ff4444;
+  font-weight: bold;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 1rem;
+  background-color: rgb(40, 167, 69);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submitButton:hover:not(.disabled) {
+  background-color: rgb(30, 124, 52);
+}
+
+.submitButton.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.resendContainer {
+  margin-top: 1.5rem;
+}
+
+.resendButton {
+  background: none;
+  border: none;
+  color: rgb(40, 167, 69);
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+
+.resendButton:hover:not(.disabled) {
+  color: rgb(33, 138, 58);
+}
+
+.resendButton.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+  text-decoration: none;
+}
