@@ -156,136 +156,198 @@
   height: 450px;
 }
 
-@media (min-width: 768px) {
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
 
+.loginModal {
+  position: relative;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 440px;
+  max-height: 90vh;
+  overflow: auto;
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.2);
+  color: #333;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (min-width: 768px) {
+  .loginModal {
+    max-width: 440px;
+  }
+
+  .overlay {
+    padding: 40px;
+  }
   .certificates {
     width: 600px;
     text-align: left;
   }
-  
+
   .advertise {
     flex-direction: row;
     justify-content: space-between;
   }
-  
+
   .texts {
     flex-direction: row;
     gap: 80px;
   }
-  
+
   .whyUs {
     flex-direction: row;
     justify-content: space-between;
   }
-  
+
   .whyUs div {
     width: 45%;
   }
-  
+
   .sliderContainer {
     width: 50%;
     height: 400px;
   }
-
 }
 
 @media (min-width: 1024px) {
-  
   .certificates {
     width: 700px;
   }
-  
+
   .certificates p {
     font-size: 18px;
   }
-  
+
   .rights {
     font-size: 18px;
   }
-  
+
   .form h2,
   .form span {
     font-size: 28px;
   }
-  
-  
+
   .texts div h2 {
     font-size: 36px;
   }
-  
+
   .texts div h2 span {
     font-size: 36px;
   }
-  
+
   .texts div h4 {
     font-size: 24px;
   }
-  
 
   .call h3 {
     font-size: 22px;
   }
-  
+
   .info button {
     padding: 10px 30px;
     font-size: 15px;
   }
-  
+
   .whyUs {
     padding: 20px;
   }
-  
+
   .whyUs div h1 {
     font-size: 36px;
   }
-  
+
   .whyUs div h2 {
     font-size: 25px;
   }
-  
+
   .whyUs div p {
     font-size: 18px;
   }
-  
+
   .img {
     width: 55%;
     height: 500px;
   }
-  
+
   .question {
     width: 55px;
     height: 55px;
   }
-
-
 }
 
 @media (min-width: 1200px) {
-  
   .certificates {
     width: 900px;
   }
-  
+
   .texts {
     gap: 200px;
   }
-  
+
   .texts div h2 {
     font-size: 48px;
   }
-  
+
   .texts div h2 span {
     font-size: 48px;
   }
-  
+
   .texts div h4 {
     font-size: 32px;
   }
-  
+
   .whyUs div h1 {
     font-size: 45px;
   }
-  
+
   .img {
     width: 60vw;
     height: 680px;

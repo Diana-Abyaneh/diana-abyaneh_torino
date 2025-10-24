@@ -153,6 +153,7 @@
   cursor: pointer;
   color: #333;
   padding: 8px;
+  display: block;
 }
 
 @keyframes dropdownFade {
@@ -189,7 +190,7 @@
   }
 
   .mobileMenuButton {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -198,5 +199,9 @@
     right: 0;
     left: auto;
     width: 200px;
+  }
+  
+  .mobileMenuButton {
+    display: block;
   }
 }
