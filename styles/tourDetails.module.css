@@ -1,56 +1,64 @@
 .container {
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 15px;
-  margin: 10px 0 50px;
+  gap: 16px;
+  padding: 12px;
+  margin: 8px 0 30px;
+  width: 100%;
 }
 
 .tourInfo {
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .tourInfo h1 {
-  font-size: 35px;
+  font-size: 24px;
   font-weight: 800;
 }
 
 .tourInfo h3 {
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .image img {
-  border-radius: 12px;
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
 }
 
 .info {
-  padding: 22px 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 16px;
 }
 
 .options {
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  flex-wrap: wrap;
+  gap: 12px;
   color: rgba(125, 125, 125, 1);
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .reserve {
   display: flex;
-  gap: 500px;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
 }
 
 .reserve p {
   color: rgba(0, 158, 202, 1);
   font-weight: 700;
-  font-size: 25px;
+  font-size: 20px;
+  text-align: center;
 }
 
 .reserve p span {
@@ -62,32 +70,129 @@
   background-color: rgba(40, 167, 69, 1);
   color: white;
   border: none;
-  border-radius: 10px;
-  padding: 8px 25px;
-  font-size: 20px;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
   font-weight: 500;
+  width: 100%;
 }
 
 .tourDet {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 }
 
 .tourDet div {
-  border-left: 1px solid rgba(0, 0, 0, 0.25);
-  padding: 0 55px;
+  border: none;
+  padding: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .lable {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   color: rgba(68, 68, 68, 1);
+  align-items: center;
+  font-size: 14px;
 }
 
 .tourDet div p {
-  text-align: center;
+  text-align: right;
   font-weight: 600;
+  font-size: 14px;
+  margin-top: 4px;
 }
 
 .insurance {
-  border-left: none !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0 50px;
+    gap: 20px;
+  }
+
+  .tourInfo {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .tourInfo h1 {
+    font-size: 28px;
+  }
+
+  .image img {
+    width: 397px;
+    height: 265px;
+  }
+
+  .info {
+    padding: 22px 0;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .options {
+    font-size: 18px;
+    gap: 15px;
+  }
+
+  .reserve {
+    flex-direction: row;
+    gap: 500px;
+    align-items: center;
+  }
+
+  .reserve p {
+    font-size: 25px;
+    text-align: right;
+  }
+
+  .reserve button {
+    width: auto;
+    padding: 8px 25px;
+    font-size: 20px;
+  }
+
+  .tourDet {
+    display: flex;
+    grid-template-columns: none;
+    gap: 0;
+  }
+
+  .tourDet div {
+    border-left: 1px solid rgba(0, 0, 0, 0.25);
+    padding: 0 55px;
+    border-bottom: none;
+  }
+
+  .lable {
+    font-size: 16px;
+    gap: 10px;
+  }
+
+  .tourDet div p {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .insurance {
+    border-left: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tourInfo h1 {
+    font-size: 35px;
+  }
 }
