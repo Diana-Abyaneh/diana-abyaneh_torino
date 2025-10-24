@@ -1,0 +1,335 @@
+.toursContainer {
+  padding: 16px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.toursContainer h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: rgba(40, 167, 69, 1);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.noTours {
+  text-align: center;
+  color: rgba(40, 167, 69, 1);
+  font-size: 16px;
+  margin-top: 40px;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.tourCard {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(40, 167, 69, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  width: 100%;
+}
+
+.tourCard:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-color: rgba(40, 167, 69, 0.6);
+}
+
+.cardHeader {
+  background: rgba(40, 167, 69, 1);
+  color: white;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tourTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.tourId {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.cardBody {
+  padding: 20px;
+}
+
+.routeSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(40, 167, 69, 0.2);
+  text-align: center;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.locationIcon {
+  color: rgba(40, 167, 69, 1);
+  margin-left: 8px;
+  font-size: 16px;
+}
+
+.locationInfo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.locationLabel {
+  font-size: 12px;
+  color: rgba(40, 167, 69, 0.8);
+  margin-bottom: 2px;
+  font-weight: 600;
+}
+
+.locationName {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+}
+
+.locationArrow {
+  color: rgba(40, 167, 69, 1);
+  font-weight: bold;
+  margin: 8px 0;
+  font-size: 16px;
+  transform: rotate(270deg);
+}
+
+.datesSection {
+  margin-bottom: 20px;
+}
+
+.dateItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.dateIcon {
+  color: rgba(40, 167, 69, 1);
+  margin-left: 8px;
+  font-size: 14px;
+}
+
+.dateInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.dateLabel {
+  font-size: 12px;
+  color: rgba(40, 167, 69, 0.8);
+  margin-bottom: 2px;
+  font-weight: 600;
+}
+
+.dateValue {
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+}
+
+.cardFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(40, 167, 69, 0.2);
+}
+
+.vehicleSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vehicleIcon {
+  color: rgba(40, 167, 69, 1);
+  font-size: 16px;
+}
+
+.vehicleText {
+  font-size: 13px;
+  color: #333;
+  font-weight: 600;
+}
+
+.priceSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.priceIcon {
+  color: rgba(40, 167, 69, 1);
+  font-size: 14px;
+}
+
+.priceValue {
+  font-size: 14px;
+  font-weight: 800;
+  color: rgba(40, 167, 69, 1);
+}
+
+@media (min-width: 768px) {
+  .toursContainer {
+    padding: 20px;
+    max-width: 800px;
+  }
+
+  .toursContainer h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .noTours {
+    font-size: 18px;
+    margin-top: 50px;
+  }
+
+  .cardsContainer {
+    gap: 20px;
+    padding: 20px 0;
+  }
+
+  .tourCard {
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(40, 167, 69, 0.3);
+  }
+
+  .tourCard:hover {
+    transform: translateY(-2px);
+  }
+
+  .cardHeader {
+    padding: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+  }
+
+  .tourTitle {
+    font-size: 20px;
+    text-align: right;
+  }
+
+  .tourId {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .cardBody {
+    padding: 25px;
+  }
+
+  .routeSection {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(40, 167, 69, 0.2);
+    gap: 0;
+  }
+
+  .location {
+    width: auto;
+    flex: 1;
+  }
+
+  .locationIcon {
+    margin-left: 10px;
+    font-size: 18px;
+  }
+
+  .locationLabel {
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  .locationName {
+    font-size: 16px;
+  }
+
+  .locationArrow {
+    transform: none;
+    margin: 0 15px;
+    font-size: 18px;
+  }
+
+  .datesSection {
+    margin-bottom: 25px;
+  }
+
+  .dateItem {
+    margin-bottom: 15px;
+  }
+
+  .dateIcon {
+    margin-left: 10px;
+    font-size: 16px;
+  }
+
+  .dateLabel {
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  .dateValue {
+    font-size: 15px;
+  }
+
+  .cardFooter {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 2px solid rgba(40, 167, 69, 0.2);
+    gap: 0;
+  }
+
+  .vehicleIcon {
+    font-size: 20px;
+  }
+
+  .vehicleText {
+    font-size: 15px;
+  }
+
+  .priceIcon {
+    font-size: 18px;
+  }
+
+  .priceValue {
+    font-size: 18px;
+  }
+}

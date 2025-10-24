@@ -1,13 +1,200 @@
 .profileContainer {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  min-height: 85vh;
+}
+
+.sidebar {
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.sidebar li {
+  flex: 1;
+  text-align: center;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 8px;
+  color: #333;
+  font-weight: 500;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.2s;
+  border-bottom: 3px solid transparent;
+}
+
+.sidebar a:hover {
+  background: rgba(40, 167, 69, 0.05);
+  color: rgba(40, 167, 69, 1);
+}
+
+.active a {
+  background: rgba(40, 167, 69, 0.1);
+  color: rgba(40, 167, 69, 1);
+  font-weight: 600;
+  border-bottom: 3px solid rgba(40, 167, 69, 1);
+}
+
+.mainContent {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  color: #222;
+  overflow-y: auto;
+}
+
+.profileBox {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-bottom: 2px solid rgba(40, 167, 69, 0.2);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  font-size: 20px;
+  color: rgba(40, 167, 69, 1);
+  text-align: center;
+}
+
+.editBtn,
+.saveBtn,
+.cancelBtn {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  justify-content: center;
+}
+
+.editBtn {
+  background: rgba(40, 167, 69, 0.1);
+  color: rgba(40, 167, 69, 1);
+}
+
+.saveBtn {
+  background: rgba(40, 167, 69, 1);
+  color: #fff;
+}
+
+.cancelBtn {
+  background: #eee;
+  color: #555;
+  margin-right: 0;
+  margin-top: 8px;
+}
+
+.profileBox section {
+  margin-bottom: 24px;
+}
+
+.profileBox section h3 {
+  font-size: 16px;
+  color: rgba(40, 167, 69, 1);
+  margin-bottom: 12px;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.row label {
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.row input,
+.row select {
+  border: 1px solid rgba(40, 167, 69, 0.3);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.row input:focus,
+.row select:focus {
+  border-color: rgba(40, 167, 69, 1);
+}
+
+.dateInput {
+  width: 100%;
+}
+
+.listBox table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 13px;
+}
+
+.listBox table thead {
+  background: rgba(40, 167, 69, 0.15);
+}
+
+.listBox table th {
+  text-align: right;
+  padding: 8px;
+  color: rgba(40, 167, 69, 1);
+  font-weight: 600;
+}
+
+.listBox table td {
+  text-align: right;
+  padding: 8px;
+  border-bottom: 1px solid rgba(40, 167, 69, 0.1);
+}
+
+.listBox table tr:hover {
+  background: rgba(40, 167, 69, 0.05);
+}
+
+@media (min-width: 768px) {
+  .profileContainer {
     flex-direction: row;
-    background: #fff;
     border-radius: 16px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    min-height: 85vh;
   }
-  
+
   .sidebar {
     width: 240px;
     height: fit-content;
@@ -15,172 +202,87 @@
     background: rgba(40, 167, 69, 0.08);
     padding: 24px 0;
     border-left: 2px solid rgba(40, 167, 69, 0.3);
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    border-bottom: none;
   }
-  
+
   .sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    display: block;
   }
-  
+
   .sidebar li {
+    text-align: right;
     margin-bottom: 8px;
   }
-  
+
   .sidebar a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    justify-content: flex-start;
     padding: 12px 24px;
-    color: #333;
-    font-weight: 500;
     font-size: 15px;
-    text-decoration: none;
-    transition: all 0.2s;
+    border-bottom: none;
+    border-right: 4px solid transparent;
   }
-  
-  .sidebar a:hover {
-    background: rgba(40, 167, 69, 0.1);
-    color: rgba(40, 167, 69, 1);
-  }
-  
+
   .active a {
-    background: rgba(40, 167, 69, 0.2);
-    color: rgba(40, 167, 69, 1);
-    font-weight: 600;
     border-right: 4px solid rgba(40, 167, 69, 1);
+    border-bottom: none;
   }
-  
+
   .mainContent {
-    flex: 1;
     padding: 40px;
-    background-color: #fff;
-    color: #222;
-    overflow-y: auto;
   }
-  
+
   .profileBox {
     max-width: 700px;
-    margin: 0 auto;
   }
-  
+
   .header {
-    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid rgba(40, 167, 69, 0.2);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
   }
-  
+
   .header h2 {
+    text-align: right;
     font-size: 22px;
-    color: rgba(40, 167, 69, 1);
   }
-  
+
   .editBtn,
   .saveBtn,
   .cancelBtn {
-    border: none;
-    border-radius: 8px;
+    width: auto;
     padding: 8px 14px;
     font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
   }
-  
-  .editBtn {
-    background: rgba(40, 167, 69, 0.1);
-    color: rgba(40, 167, 69, 1);
-  }
-  
-  .saveBtn {
-    background: rgba(40, 167, 69, 1);
-    color: #fff;
-  }
-  
+
   .cancelBtn {
-    background: #eee;
-    color: #555;
     margin-right: 8px;
+    margin-top: 0;
   }
-  
-.profileBox  section {
-    margin-bottom: 32px;
-  }
-  
-.profileBox  section h3 {
-    font-size: 18px;
-    color: rgba(40, 167, 69, 1);
-    margin-bottom: 12px;
-  }
-  
+
   .row {
-    display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 12px;
   }
-  
+
   .row label {
     flex: 0 0 35%;
-    color: #333;
-    font-weight: 500;
+    font-size: 15px;
   }
-  
+
   .row input,
   .row select {
     flex: 0 0 60%;
-    border: 1px solid rgba(40, 167, 69, 0.3);
-    border-radius: 8px;
     padding: 8px 10px;
+  }
+
+  .listBox table {
     font-size: 14px;
-    outline: none;
-    transition: all 0.2s;
   }
-  
-  .row input:focus,
-  .row select:focus {
-    border-color: rgba(40, 167, 69, 1);
-  }
-  
-  .dateInput {
-    width: 100%;
-  }
-  
- .listBox  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 16px;
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-.listBox  table thead {
-    background: rgba(40, 167, 69, 0.15);
-  }
-  
-.listBox  table th {
-    text-align: right;
+
+  .listBox table th,
+  .listBox table td {
     padding: 10px;
-    color: rgba(40, 167, 69, 1);
-    font-weight: 600;
   }
-  
-.listBox  table td {
-    text-align: right;
-    padding: 10px;
-    border-bottom: 1px solid rgba(40, 167, 69, 0.1);
-  }
-  
-.listBox  table tr:hover {
-    background: rgba(40, 167, 69, 0.05);
-  }
-  
+}
