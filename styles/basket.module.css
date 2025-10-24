@@ -1,21 +1,23 @@
 .container {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 2rem;
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
   direction: rtl;
 }
 
 .form {
   background: #fff;
-  padding: 2rem;
-  border-radius: 1rem;
+  padding: 1.5rem;
+  border-radius: 0.8rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  order: 2;
 }
 
 .form h2 {
   margin-bottom: 1rem;
   color: #333;
+  font-size: 1.2rem;
 }
 
 .field {
@@ -32,11 +34,12 @@
 
 .field input,
 .field select {
-  padding: 0.6rem;
+  padding: 0.8rem;
   border-radius: 0.5rem;
   border: 1px solid #ccc;
   outline: none;
   font-size: 0.9rem;
+  width: 100%;
 }
 
 .error {
@@ -50,7 +53,7 @@
   background: rgba(40, 167, 69, 1);
   color: white;
   border: none;
-  padding: 0.8rem;
+  padding: 1rem;
   border-radius: 0.6rem;
   font-size: 1rem;
   cursor: pointer;
@@ -61,18 +64,24 @@
   background: rgb(27, 110, 46);
 }
 
+.submitBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
 .summary {
   background: #fafafa;
-  border-radius: 1rem;
-  padding: 2rem;
+  border-radius: 0.8rem;
+  padding: 1.5rem;
   border: 1px solid #e0e0e0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  order: 1;
 }
 
 .summary h2 {
   margin-bottom: 1rem;
+  font-size: 1.2rem;
 }
 
 .summary p {
@@ -84,8 +93,14 @@
 .price {
   margin-top: 1rem;
   font-size: 1.1rem;
-  color: rgba(40, 167, 69, 1);
+  color: rgba(0, 158, 202, 1) !important;
   font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+
+.price strong {
+  color: #444;
 }
 
 .datePickerContainer {
@@ -110,4 +125,43 @@
 
 .zaman-datepicker .today {
   border: 1px solid rgba(40, 167, 69, 1);
+}
+
+@media (min-width: 768px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1.5fr 0.5fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .form {
+    padding: 2rem;
+    border-radius: 1rem;
+    order: 1;
+  }
+
+  .form h2 {
+    font-size: 1.5rem;
+  }
+
+  .field input,
+  .field select {
+    padding: 0.6rem;
+  }
+
+  .submitBtn {
+    padding: 0.8rem;
+  }
+
+  .summary {
+    padding: 2rem;
+    border-radius: 1rem;
+    order: 2;
+    height: fit-content;
+  }
+
+  .summary h2 {
+    font-size: 1.5rem;
+  }
 }
