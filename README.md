@@ -24,7 +24,7 @@ This project was developed as the final project of **Botostart Frontend Bootcamp
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/your-username/torino.git
+git clone https://github.com/Diana-Abyaneh/diana-abyaneh_torino.git
 cd torino
 npm install
 ```
