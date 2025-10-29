@@ -8,9 +8,6 @@ import man from "../images/professional.svg";
 import eco from "../images/R (1).svg";
 import Login from "./auth/login/page";
 import styles from "../styles/Homepage.module.css";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/effect-fade";
 
 export default function Home() {
   const [showLogin, setShowLogin] = useState(false);
