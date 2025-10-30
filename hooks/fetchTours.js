@@ -6,7 +6,7 @@ export default async function fetchTours(filters = {}) {
 
     if (filters.originId) params.originId = filters.originId;
     if (filters.destinationId) params.destinationId = filters.destinationId;
-    if (filters.startDate) params.append("startDate", filters.startDate);
+    if (filters.startDate) params.startDate = filters.startDate;
 
     const res = await axiosInstance.get("/tour", { params });
     return res.data;
