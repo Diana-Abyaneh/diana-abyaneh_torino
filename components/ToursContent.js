@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { PropagateLoader } from "react-spinners";
 import { vehicleType } from "@/services/vehicle";
 import { month } from "@/services/months";
 import { length } from "@/services/length";
 import fetchTours from "@/hooks/fetchTours";
+import SearchForm from "@/components/forms/searchForm";
 import Image from "next/image";
 import styles from "@/styles/tours.module.css";
-import SearchForm from "@/components/forms/searchForm";
 
 function ToursContent() {
   const router = useRouter();
@@ -67,7 +68,18 @@ function ToursContent() {
 
       <h1>همه تورها</h1>
 
-      {isLoading && <p>در حال بارگذاری...</p>}
+      {isLoading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <PropagateLoader color="rgba(41, 168, 71, 1)" />
+        </div>
+      )}
+
       {error && <p>خطا در دریافت اطلاعات</p>}
 
       <ul>
