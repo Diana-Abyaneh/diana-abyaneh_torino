@@ -1,5 +1,6 @@
 "use client";
 
+import Cookies from "js-cookie";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { IoPerson } from "react-icons/io5";
@@ -8,7 +9,8 @@ import { LuLogOut } from "react-icons/lu";
 import { HiMenu, HiX } from "react-icons/hi";
 import { toast } from "react-toastify";
 import { useAuth } from "@/context/authContext";
-import Cookies from "js-cookie";
+import Login from "@/app/auth/login/page";
+import Verify from "@/app/auth/verify/page";
 import Image from "next/image";
 import torino from "@/images/Torino.svg";
 import styles from "@/styles/header.module.css";
@@ -21,6 +23,13 @@ export default function Header() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const menuRef = useRef(null);
   const mobileNavRef = useRef(null);
+  const [showLogin, setShowLogin] = useState(false);
+  const [showVerify, setShowVerify] = useState(false);
+
+  const handleLoginSuccess = () => {
+    setShowLogin(false);
+    setShowVerify(true);
+  };
 
   useEffect(() => {
     const token = Cookies.get("accessToken");
@@ -30,12 +39,11 @@ export default function Header() {
       try {
         const parsed = JSON.parse(userData);
         setUser(parsed);
-        console.log("Header restored user from cookie:", parsed);
       } catch (err) {
         console.error("خطا در خواندن کوکی user:", err);
       }
     }
-  }, []);
+  }, [user, setUser]);
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
@@ -63,7 +71,7 @@ export default function Header() {
     if (user?.mobile) {
       setMenuOpen((prev) => !prev);
     } else {
-      router.push("/auth/login");
+      setShowLogin(true);
     }
   };
 
@@ -80,7 +88,7 @@ export default function Header() {
 
   return (
     <header className={styles.container}>
-      <button 
+      <button
         className={styles.mobileMenuButton}
         onClick={() => setMobileNavOpen(!mobileNavOpen)}
       >
@@ -88,11 +96,7 @@ export default function Header() {
       </button>
 
       <div className={styles.logo}>
-        <Image
-          src={torino}
-          alt="Torino logo"
-          onClick={handleHomePage}
-        />
+        <Image src={torino} alt="Torino logo" onClick={handleHomePage} />
       </div>
 
       <nav className={styles.nav}>
@@ -104,7 +108,7 @@ export default function Header() {
 
       <div ref={menuRef}>
         <button
-          className={user?.mobile ? styles.logged : null}
+          className={user?.mobile ? styles.logged : styles.logBtn}
           onClick={handleUserClick}
         >
           <IoPerson size={20} />
@@ -124,10 +128,7 @@ export default function Header() {
               <IoPerson />
               <p>اطلاعات حساب کاربری</p>
             </a>
-            <a
-              onClick={handleLogout}
-              className={styles.logout}
-            >
+            <a onClick={handleLogout} className={styles.logout}>
               <LuLogOut />
               <p>خروج از حساب کاربری</p>
             </a>
@@ -141,6 +142,34 @@ export default function Header() {
           <p onClick={() => handleNavClick("/services")}>خدمات گردشگری</p>
           <p onClick={() => handleNavClick("/about")}>درباره ما</p>
           <p onClick={() => handleNavClick("/contact")}>تماس با ما</p>
+        </div>
+      )}
+
+      {showLogin && (
+        <div className={styles.overlay}>
+          <div className={styles.modal}>
+            <button
+              className={styles.closeButton}
+              onClick={() => setShowLogin(false)}
+            >
+              ✕
+            </button>
+            <Login onSuccess={handleLoginSuccess} />
+          </div>
+        </div>
+      )}
+
+      {showVerify && (
+        <div className={styles.overlay}>
+          <div className={styles.modal}>
+            <button
+              className={styles.closeButton}
+              onClick={() => setShowVerify(false)}
+            >
+              ✕
+            </button>
+            <Verify onClose={() => setShowVerify(false)} />
+          </div>
         </div>
       )}
     </header>

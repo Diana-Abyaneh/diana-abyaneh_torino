@@ -1,16 +1,16 @@
 "use client";
+
 import axiosInstance from "@/lib/axios";
+import Cookies from "js-cookie";
+import OtpInput from "react18-input-otp";
 import { toast } from "react-toastify";
 import { useAuth } from "@/context/authContext";
 import { useForm } from "react-hook-form";
 import { useEffect, useState, useRef } from "react";
-import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
-import OtpInput from "react18-input-otp";
 import styles from "@/styles/verify.module.css";
 import "react-toastify/dist/ReactToastify.css";
 
-function Verify() {
+function Verify({ onClose }) {
   const { phone, setPhone, setUser, isLoading, setIsLoading } = useAuth();
   const [timer, setTimer] = useState(120);
   const [canResend, setCanResend] = useState(false);
@@ -18,7 +18,6 @@ function Verify() {
     defaultValues: { code: "" },
   });
   const code = watch("code");
-  const router = useRouter();
   const hasSentOtp = useRef(false);
 
   useEffect(() => {
@@ -26,8 +25,8 @@ function Verify() {
 
     const currentPhone = phone || Cookies.get("phone");
     if (!currentPhone) {
-      toast.error("شماره موبایل یافت نشد. لطفاً دوباره وارد شوید.");
-      router.push("/auth/login");
+      toast.error("شماره موبایل یافت نشد");
+      onClose();
       return;
     }
 
@@ -44,13 +43,15 @@ function Verify() {
       if (res.status === 200) {
         toast.success("کد تأیید ارسال شد", { position: "top-center" });
         if (res.data?.code) {
-          toast.info(`کد ورود شما: ${res.data.code}`, { position: "top-right" });
+          toast.info(`کد ورود شما: ${res.data.code}`, {
+            position: "top-right",
+          });
         }
         Cookies.set("phone", mobile, { expires: 0.1 });
         setTimer(120);
         setCanResend(false);
       }
-    } catch (err) {
+    } catch {
       toast.error("خطا در ارسال کد", { position: "top-center" });
       hasSentOtp.current = false;
     } finally {
@@ -85,21 +86,14 @@ function Verify() {
       if (accessToken && userData) {
         Cookies.set("accessToken", accessToken, { expires: 7 });
         Cookies.set("refreshToken", refreshToken, { expires: 14 });
-
-        const completeUser = {
-          id: userData.id,
-          mobile: userData.mobile,
-        };
-
-        Cookies.set("user", JSON.stringify(completeUser), { expires: 7 });
-        setUser(completeUser);
-
+        Cookies.set("user", JSON.stringify(userData), { expires: 7 });
+        setUser(userData);
         toast.success("ورود با موفقیت انجام شد", { position: "top-center" });
-        router.push("/");
+        onClose();
       } else {
         toast.error("کد معتبر نیست", { position: "top-center" });
       }
-    } catch (err) {
+    } catch {
       toast.error("کد اشتباه یا منقضی شده", { position: "top-center" });
     } finally {
       setIsLoading(false);
@@ -110,7 +104,8 @@ function Verify() {
     <div className={styles.container}>
       <h1>تأیید شماره موبایل</h1>
       <p>
-        کد برای شماره <span className={styles.phoneNumber}>{phone}</span> ارسال شد.
+        کد برای شماره <span className={styles.phoneNumber}>{phone}</span> ارسال
+        شد.
       </p>
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -130,7 +125,7 @@ function Verify() {
       </form>
 
       {canResend ? (
-        <button onClick={() => sendOtp(phone)}>ارسال مجدد</button>
+        <button onClick={() => sendOtp(phone)} className={styles.resendBtn}>ارسال مجدد</button>
       ) : (
         <p>ارسال مجدد تا {formatTime(timer)}</p>
       )}

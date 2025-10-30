@@ -1,19 +1,17 @@
 "use client";
 
 import * as yup from "yup";
+import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useRouter } from "next/navigation";
 import { PropagateLoader } from "react-spinners";
 import { useAuth } from "@/context/authContext";
-import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import styles from "@/styles/login.module.css";
 import "react-toastify/dist/ReactToastify.css";
 
-function Login() {
+function Login({ onSuccess }) {
   const { setPhone, isLoading, setIsLoading } = useAuth();
-  const router = useRouter();
 
   const schema = yup.object().shape({
     phone: yup
@@ -33,7 +31,8 @@ function Login() {
     try {
       setPhone(data.phone);
       Cookies.set("phone", data.phone, { expires: 0.1 });
-      router.push("/auth/verify");
+      toast.success("در حال ارسال کد", 500);
+      onSuccess?.();
     } catch (error) {
       console.error("Login Error:", error);
       toast.error("خطا در ورود. لطفاً دوباره تلاش کنید", {
@@ -61,14 +60,14 @@ function Login() {
           <p className={styles.errorText}>{errors.phone.message}</p>
         )}
 
-        <button 
-          type="submit" 
-          disabled={isLoading} 
+        <button
+          type="submit"
+          disabled={isLoading}
           className={styles.submitButton}
         >
           {isLoading ? (
             <PropagateLoader
-              color="white"
+              color="rgb(255, 255, 255)"
               size={10}
               speedMultiplier={0.8}
             />
