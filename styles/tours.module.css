@@ -63,6 +63,8 @@
   font-size: 20px;
   color: rgba(0, 158, 202, 1);
 }
+
+
 @media (min-width: 768px) {
   .container ul {
     flex-direction: row;

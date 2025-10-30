@@ -33,7 +33,7 @@
 .form {
   width: 100%;
   max-width: 400px;
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 
 .otpContainer {
@@ -41,7 +41,7 @@
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin: 1.5rem 0;
+  margin: 1rem 0;
 }
 
 .otpInput {
@@ -52,7 +52,7 @@
   font-size: 1.1rem;
   font-weight: bold;
   text-align: center;
-  direction: ltr;
+  direction: ltr !important;
 }
 
 .otpInput:focus {
@@ -80,11 +80,10 @@
 }
 
 .form button:disabled {
-  background-color: #ccc;
   cursor: not-allowed;
 }
 
-.container > button {
+.resendBtn {
   background: none;
   border: none;
   color: rgba(40, 167, 69, 1);
@@ -95,11 +94,11 @@
   padding: 0.5rem;
 }
 
-.container > button:hover:not(:disabled) {
+.resendBtn:hover:not(:disabled) {
   color: rgba(33, 136, 56, 1);
 }
 
-.container > button:disabled {
+.resendBtn:disabled {
   color: #ccc;
   cursor: not-allowed;
   text-decoration: none;
@@ -146,7 +145,7 @@
     font-size: 1.1rem;
   }
 
-  .container > button {
+  .resendBtn {
     font-size: 1rem;
   }
 
